@@ -1,0 +1,48 @@
+div {
+  height: 200px;
+  width: 70%;
+  color: white;
+  margin-bottom: 5px;
+}
+#horizontal-right {
+  /* linear gradient(horizontal transition to the right) */
+  background: linear-gradient(to right, rgb(0, 0, 100), rgba(0, 0, 100, 0));
+}
+#horizontal-left {
+  /* linear gradient(horizontal transition to the left) */
+  background: linear-gradient(to left, rgb(0, 0, 100), rgba(0, 0, 100, 0));
+  color: black;
+}
+#vertical-top {
+  /* linear gradient(vertical transition to the top) */
+  background: linear-gradient(to top, rgb(0, 0, 100), rgba(0, 0, 100, 0));
+  color: black;
+}
+#vertical-bottom {
+  /* linear gradient(vertical transition to the bottom) */
+  background: linear-gradient(to bottom, rgb(0, 0, 100), rgba(0, 0, 100, 0));
+}
+#top-right {
+  /* linear gradient(diagonal transition to the top right) */
+  background: linear-gradient(to top right, rgb(0, 0, 100), rgba(0, 0, 100, 0));
+}
+#top-left {
+  /* linear gradient(diagonal transition to the top left) */
+  background: linear-gradient(to top left, rgb(0, 0, 100), rgba(0, 0, 100, 0));
+  color: black;
+}
+#bottom-right {
+  /* linear gradient(diagonal transition to the bottom right) */
+  background: linear-gradient(to bottom right, rgb(0, 0, 100),
+  rgba(0, 0, 100, 0));
+}
+#bottom-left {
+  /* linear gradient(diagonal transition to the bottom left) */
+  background: linear-gradient(to bottom left, rgb(0, 0, 100),
+  rgba(0, 0, 100, 0));
+  color: black;
+}
+#degree-gradient {
+  /* linear gradient(a transition of 188 degrees) */
+  background: linear-gradient(188deg, black, blue);
+}

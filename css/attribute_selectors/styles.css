@@ -1,0 +1,17 @@
+/* Attribute selector(equall to) */
+ul[type="circle"] {
+  color: steelblue;
+}
+/* Attribute selector(starts with) */
+img[src^="images/"] {
+  height: 200px;
+}
+/* Attribute selector(ends with) */
+img[src$=".jpg"] {
+  border: 20px solid pink;
+}
+/* Attribute selector(contains) */
+img[src*="_"] {
+  outline: 10px dashed black;
+  margin-left: 20px;
+}

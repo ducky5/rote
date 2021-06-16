@@ -1,0 +1,34 @@
+/* hover pseudoselector */
+h2:hover {
+  color: red;
+}
+h2 {
+  color: blue;
+}
+.class {
+  color: black;
+}
+/* first-child pseudoselector */
+li:first-child {
+  color: red;
+}
+/* last-child pseudoselector */
+li:last-child {
+  color: steelblue;
+}
+/* nth-child pseudoselector */
+li:nth-child(2) {
+  color: transparent;
+}
+/* only-child pseudoselector */
+li:only-child {
+  color: pink;
+}
+/* link pseudoselector(opposite of visited) */
+.no-link:link {
+  color: steelblue;
+}
+/* visited pseudoselector(opposite of link) */
+.no-link:visited {
+  color: red;
+}

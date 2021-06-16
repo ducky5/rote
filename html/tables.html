@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>TABLES</title>
+    <style>
+      td.bar
+      {
+        padding: 5px;
+        background: black;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- tables -->
+
+    <h2>TABLE 1</h2>
+    <table>
+      <!-- table caption(title) -->
+      <caption><h2>name and age as they relate to OS choices</h2></caption>
+      <!-- table head -->
+      <thead>
+        <!-- table row -->
+        <tr>
+          <!-- table headers -->
+          <th>NAME</th>
+          <th>AGE</th>
+          <th>PREFERED OS</th>
+        </tr>
+      </thead>
+      <!-- table body -->
+      <tbody>
+        <tr>
+          <!-- table data -->
+          <td>Yassir</td>
+          <td>18</td>
+          <td>ubuntu</td>
+        </tr>
+        <tr>
+          <td>Kenny</td>
+          <td>27</td>
+          <td>Microsoft Windows</td>
+        </tr>
+        <tr>
+          <td>Alvin</td>
+          <td>50</td>
+          <td>Microsoft Windows</td>
+        </tr>
+        <tr>
+          <td>Emma</td>
+          <td>20</td>
+          <td>Arch Linux</td>
+        </tr>
+        <tr>
+          <td>Nathan</td>
+          <td>31</td>
+          <td>Kali Linux</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>TABLE 2(chart)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>0%</th>
+          <th>25%</th>
+          <th>50%</th>
+          <th>75%</th>
+          <th>100%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="5" class="bar"></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="bar"></td>
+        </tr>
+        <tr>
+          <td colspan="" class="bar"></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

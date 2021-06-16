@@ -1,0 +1,55 @@
+.container {
+  background: linear-gradient(-90deg, steelblue, white);
+  height: 500px;
+  margin: 10px;
+  /* set display type as grid */
+  display: grid;
+  /* number of columns and rows */
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto;
+  /* even spacing between the grid-items (horizontal)
+  justify-content: space-evenly; */
+
+  /* vertical alignment
+  align-content: center; */
+
+  /* gap between columns
+  grid-column-gap: 100px; */
+
+  /* gap between rows
+  grid-row-gap: 100px; */
+
+  /* shorthand for grid gaps
+  grid-gap: 300px 150px; */
+}
+.container > div {
+  margin: 8px;
+  line-height: 40px;
+  background: rgba(77, 77, 77, .3);
+  font-family: sans-serif;
+  width: 70px;
+  font-size: 25px;
+  text-align: center;
+  color: rgba(0, 0, 0, .9);
+}
+#one {
+
+}
+#two {
+  /* start point / how many rows or columns to span */
+  grid-column: 1/ span 3;
+  grid-row: 1/span 4;
+}
+#three {
+
+}
+#four {
+  /* shorthand for grid-column and grid-row */
+  grid-area: 6 / 1 / span 4 / span 3;
+}
+#five {
+
+}
+#six {
+
+}

@@ -1,0 +1,27 @@
+@keyframes body-color {
+  0% {background: black;}
+  50% {background: pink;}
+  100% {background: blue;}
+}
+body {
+  /* animation name */
+  /* animation-name: body-color; */
+  /* animation duration */
+  /* animation-duration: 3s; */
+  /* timing */
+  /* animation-timing-function: linear; */
+  /* delay */
+  /* animation-delay: 2s; */
+  /* number of iterations */
+  /* animation-iteration-count: 2; */
+  /* animation direction */
+  /* animation-direction: alternate; */
+
+  /* shorthand */
+  /* animation: name duration timing-function delay iteration-count direction */
+  -webkit-animation: body-color 3s linear 0s 2 alternate;
+  -o-animation: body-color 3s linear 0s 2 alternate;
+  -moz-animation: body-color 3s linear 0s 2 alternate;
+  /* for internet explorer */
+  -ms-animation: body-color 3s linear 0s 2 alternate;
+}

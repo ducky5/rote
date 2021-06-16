@@ -1,0 +1,64 @@
+.container {
+  margin: 10px;
+  padding: 8px;
+  height: 400px;
+  background: linear-gradient(-90deg, green, white);
+  /* using the display property to make this a flexbox */
+  display: flex;
+  /* default flex display */
+  flex-direction: row;
+  /* prevents element squeezing to fit in space by placing them in new line */
+  flex-wrap: nowrap;
+  /* align flex-items horizontally */
+  justify-content: center;
+  /* align flex-items vertically */
+  align-items: center;
+}
+#a {
+  order: 5;
+  flex-basis: 100px;
+  flex-grow: 1;
+  flex-shrink: 10;
+}
+#b {
+  order: 2;
+  /* grow shrink basis */
+  flex: 1 1 100px;
+}
+#c {
+  order: 3;
+  flex-basis: 100px;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#d {
+  order: 1;
+  /* align flex-item vertically */
+  align-self: flex-start;
+  flex-basis: 100px;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#e {
+  order: 4;
+  flex-basis: 100px;
+  flex-grow: 10;
+  flex-shrink: 1;
+}
+#f {
+  order: 6;
+  flex-basis: 100px;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+/* totally unrelated to flexbox, just for good looks */
+.container > div {
+  background: green;
+  width: 50px;
+  font-size: 25px;
+  line-height: 50px;
+  margin: 10px;
+  text-align: center;
+  border: 2px solid #000;
+  font-family: sans-serif;
+}

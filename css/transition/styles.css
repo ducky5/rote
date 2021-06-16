@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+button {
+  padding: 5px;
+  background: steelblue;
+  border: 2px solid blue;
+  width: 100px;
+  line-height: 25px;
+  font-size: 20px;
+  color: darkblue;
+  /* browser support */
+  /* chrome, safari */
+  -webkit-transition: background 300ms ease;
+  /* firefox */
+  -moz-transition: background 300ms ease;
+  /* opera */
+  -o-transition: background 300ms ease; 
+}
+button:hover {
+  background: lightblue;
+}

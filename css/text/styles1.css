@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "press-start";
+  src: url('fonts/PressStart2P-Regular.ttf');
+}
+#family, h3 {
+  /* font family */
+  font-family: /* if */ "press-start" /* is available */, /* else */ sans-serif;
+}

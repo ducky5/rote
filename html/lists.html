@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>lists howto</title>
+  </head>
+  <body>
+    <!-- unordered list -->
+    <ul>
+      <h2>unordered list</h2>
+      <li><a href="#">APPLES</a></li>
+      <li><a href="#">BANANAS</a></li>
+      <li><a href="#">ORANGES</a></li>
+      <li><a href="#">ETC...</a></li>
+    </ul>
+    <!-- ordered list(order starting from 1(defautl)) -->
+    <ol>
+      <h2>ordered list(order: regular numbers)</h2>
+      <li><a href="#">APPLES</a></li>
+      <li><a href="#">BANANAS</a></li>
+      <li><a href="#">ORANGES</a></li>
+      <li><a href="#">ETC...</a></li>
+    </ol>
+    <!-- ordered list(capital roman numbers) -->
+    <ol type="I">
+      <h2>ordered list(order: capital roman numbers)</h2>
+      <li><a href="#">APPLES</a></li>
+      <li><a href="#">BANANAS</a></li>
+      <li><a href="#">ORANGES</a></li>
+      <li><a href="#">ETC...</a></li>
+    </ol>
+    <!-- ordered list(lowercase roman numbers) -->
+    <ol type="i">
+      <h2>ordered list(order: lowercase roman numbers)</h2>
+      <li><a href="#">APPLES</a></li>
+      <li><a href="#">BANANAS</a></li>
+      <li><a href="#">ORANGES</a></li>
+      <li><a href="#">ETC...</a></li>
+    </ol>
+    <!-- ordered list(capital alphabet) -->
+    <ol type="A">
+      <h2>ordered list(order: capital letters)</h2>
+      <li><a href="#">APPLES</a></li>
+      <li><a href="#">BANANAS</a></li>
+      <li><a href="#">ORANGES</a></li>
+      <li><a href="#">ETC...</a></li>
+    </ol>
+    <!-- order list(lowercase alphabet) -->
+    <ol type="a">
+      <h2>ordered list(order: lowercase letters)</h2>
+      <li><a href="#">APPLES</a></li>
+      <li><a href="#">BANANAS</a></li>
+      <li><a href="#">ORANGES</a></li>
+      <li><a href="#">ETC...</a></li>
+    </ol>
+
+    <!-- nested unordered lists -->
+    <h2>NESTED LISTS</h2>
+    <ul>
+      <h3>root</h3>
+      <li><a href="#">APPLES</a></li>
+      <li><a href="#">BANANAS</a></li>
+      <li><a href="#">ORANGES</a></li>
+      <li><a href="#">ETC...</a></li>
+      <ul>
+        <h3>root/</h3>
+        <li><a href="#">APPLES</a></li>
+        <li><a href="#">BANANAS</a></li>
+        <li><a href="#">ORANGES</a></li>
+        <li><a href="#">ETC...</a></li>
+        <ul>
+          <h2>root/.../</h2>
+          <li><a href="#">APPLES</a></li>
+          <li><a href="#">BANANAS</a></li>
+          <li><a href="#">ORANGES</a></li>
+          <li><a href="#">ETC...</a></li>
+        </ul>
+      </ul>
+    </ul>
+
+    <!-- nested ordered lists -->
+    <ol>
+      <h3>root</h3>
+      <li><a href="#">APPLES</a></li>
+      <li><a href="#">BANANAS</a></li>
+      <li><a href="#">ORANGES</a></li>
+      <li><a href="#">ETC...</a></li>
+      <ol>
+        <h3>root/</h3>
+        <li><a href="#">APPLES</a></li>
+        <li><a href="#">BANANAS</a></li>
+        <li><a href="#">ORANGES</a></li>
+        <li><a href="#">ETC...</a></li>
+        <ol>
+          <h3>root/.../</h3>
+          <li><a href="#">APPLES</a></li>
+          <li><a href="#">BANANAS</a></li>
+          <li><a href="#">ORANGES</a></li>
+          <li><a href="#">ETC...</a></li>
+        </ol>
+      </ol>
+    </ol>
+
+    <!-- description lists -->
+    <h2>description lists</h2>
+    <dl>
+      <dt>lubuntu</dt>
+      <dd>An operating system built on top of the linux kernel</dd>
+      <dt>atom</dt>
+      <dd>An IDE(integrated development environment) software</dd>
+    </dl>
+  </body>
+</html>

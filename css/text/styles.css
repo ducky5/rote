@@ -1,0 +1,24 @@
+#decoration {
+  /* text decoration */
+  text-decoration: underline;
+}
+#transform {
+  /* text transformation */
+  text-transform: capitalize;
+}
+#align {
+  /* text alignment */
+  text-align: center;
+}
+#size {
+  /* font sizing */
+  font-size: 1.25em;
+}
+#weight {
+  /* font weight */
+  font-weight: 100;
+}
+#style {
+  /* font style */
+  font-style: oblique;
+}

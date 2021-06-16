@@ -1,0 +1,7 @@
+body {
+  /* can be used shorthand: background: ...*/
+  background-image: url("images/duckwallpaperchoice.jpg");
+  /* background-repeat: no-repeat; */
+  /* covers the entire container */
+  background-size: cover;
+}

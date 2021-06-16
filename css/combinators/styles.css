@@ -1,0 +1,16 @@
+/* Adjacent-Sibling combinator(only one element can be styled) */
+#adjacent + p {
+  color: steelblue;
+}
+/* General-Sibling combinator(multiple elements can be styled) */
+#general ~ p {
+  color: steelblue;
+}
+/* Child combinator(element must be one level down) */
+ul > li {
+  color: steelblue;
+}
+/* Descendant combinator(element can be any number of levels down) */
+ol p {
+  color: steelblue;
+}

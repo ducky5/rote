@@ -1,0 +1,13 @@
+/* priority #1 */
+#id {
+  color: blue;
+}
+/* priority #2 */
+.class {
+  color: green;
+}
+/* priority #3 */
+h1 {
+  color: purple;
+}
+/* all are overridden via inline css(in html file) */

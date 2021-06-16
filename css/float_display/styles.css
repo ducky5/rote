@@ -1,0 +1,12 @@
+div {
+  height: 200px;
+  width: 200px;
+  background: linear-gradient(180deg, lightblue, blue);
+  /* takes features from block and inline and blends them together */
+  display: inline-block;
+}
+.box {
+  /* element floats to the right */
+  float: right;
+  background: radial-gradient(red 20%, blue 40%, black 60%);
+}
