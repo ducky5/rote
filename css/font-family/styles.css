@@ -1,0 +1,14 @@
+@font-face {
+  /* find ttf file */
+  src: url('fonts/PressStart2P-Regular.ttf');
+  /* set font-family identifier */
+  font-family: my-downloaded-font;
+}
+/* serif is ugly */
+* {
+  font-family: sans-serif;
+}
+p {
+  /* set element font to my downloaded font */
+  font-family: my-downloaded-font;
+}

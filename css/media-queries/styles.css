@@ -1,0 +1,43 @@
+* {
+  font-family: sans-serif;
+}
+h3 {
+  text-decoration: line-through;
+}
+/* media queries */
+
+/* Mobile devices */
+@media (min-width: 320px /* or 480px */) {
+  #_1 {
+    text-decoration: none;
+    color: rgb(100, 100, 100);
+  }
+}
+/* Ipads, Tablets */
+@media (min-width: 481px /* or 768px */) {
+  #_2 {
+    text-decoration: none;
+    color: rgb(100, 100, 100);
+  }
+}
+/* Small screens, laptops */
+@media (min-width: 769px /* or 1024px */) {
+  #_3 {
+    text-decoration: none;
+    color: rgb(100, 100, 100);
+  }
+}
+/* Desktops, large screens */
+@media (min-width: 1025px /* or 1200px */) {
+  #_4 {
+    text-decoration: none;
+    color: rgb(100, 100, 100);
+  }
+}
+/* Extra large screens, TV */
+@media (min-width: 1201px /* or more */) {
+  #_5 {
+    text-decoration: none;
+    color: rgb(100, 100, 100);
+  }
+}
