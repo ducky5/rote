@@ -1,0 +1,12 @@
+body {
+  background: #000;
+}
+h3 {
+  color: rgb(240, 240, 240);
+  font-size: 5em;
+  text-align: center;
+  opacity: .8;
+
+  /* text-shadow: h-shadow v-shadow blur-radius color|none|initial|inherit; */
+  text-shadow: 2px 1px 10px #fff;
+}
