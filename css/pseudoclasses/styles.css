@@ -1,0 +1,4 @@
+/* selector:not(except this one) */
+p:not(.not) {
+  color: red;
+}
