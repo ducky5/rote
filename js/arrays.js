@@ -18,3 +18,7 @@ console.log(array)
 // remove last element
 array.pop()
 console.log(array)
+
+// spread operator
+let array2 = [...array]
+console.log("array2 = " + JSON.stringify(array2))
