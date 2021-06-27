@@ -1,0 +1,10 @@
+duck
+giraffe
+cat
+horse
+dingdong
+
+kangaroo
+kangaroo
+kangaroo
+kangaroo
