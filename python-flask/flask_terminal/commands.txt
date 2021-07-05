@@ -3,3 +3,24 @@ environment variable: FLASK_DEBUG=1
 
 FILE TO RUN:
 environment variable: FLASK_APP=file
+
+DATABASE PACKAGES
+pip install flask-sqlalchemy <<< ORM(Object-relational mapper)
+
+INITIALIZE DATABASE
+in python shell:
+	from app import db
+	db.create_all()
+testing:
+	from app import User
+	user1 = User(name="duck")
+adding and saving to database:
+	db.session.add(user1)
+	db.session.commit()
+see all database entries for a certain table(User in this case):
+	User.query.all()
+see entries satisfying certain criteria:
+	User.query.filter_by(name='duck')
+iterate:
+	for user in User.query.filter_by(name="duck"):
+		user.name
