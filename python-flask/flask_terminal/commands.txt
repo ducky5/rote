@@ -1,0 +1,5 @@
+DEBUG MODE ON:
+environment variable: FLASK_DEBUG=1
+
+FILE TO RUN:
+environment variable: FLASK_APP=file

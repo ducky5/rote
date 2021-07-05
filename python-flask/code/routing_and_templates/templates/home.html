@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <style>
+      * {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    {# this is a jinja comment #} <!-- jinja comment -->
+    
+    <h1>Welcome to the home page!</h1>
+    <p>USERNAME: <mark>{{ username }} <!-- for output --> </mark></p>
+    <ol>
+      {% for number in numbers[0] %} <!-- for statements(no output) -->
+      <li><mark>{{ numbers[0][number] }}</mark></li>
+      {% endfor %} <!-- end jinja statement -->
+    </ol>
+  </body>
+</html>
