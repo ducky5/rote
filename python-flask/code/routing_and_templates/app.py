@@ -4,6 +4,7 @@ app = Flask(__name__)
 
 # set URL as function-call URL
 @app.route('/')
+@app.route('/main') # this is also function call URL
 # said function
 def main_page():
     return 'main-page'
