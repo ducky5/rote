@@ -24,3 +24,9 @@ see entries satisfying certain criteria:
 iterate:
 	for user in User.query.filter_by(name="duck"):
 		user.name
+delete data and tables from database:
+	db.drop_all()
+roll 1 db.session.commit() back:
+	db.session.rollback()
+use the backref to get the related model:
+	smt.backref
