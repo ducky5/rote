@@ -1,0 +1,1 @@
+This is a sample text file, it is used to test ajax text file fetching.

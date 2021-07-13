@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Fetch File</title>
+  </head>
+  <body>
+    <button id="button">Get Text File</button>
+    <br><br>
+    <p id="text"></p>
+
+    <!-- js -->
+    <script type="text/javascript">
+      // create event listener
+      document.getElementById('button').addEventListener('click', load_text)
+
+      function load_text() {
+        // create XHR(XMLHttpRequest) object
+        let xhr = new XMLHttpRequest()
+
+        // open(request type, url/file, async)
+        xhr.open('GET', 'sample.txt', true)
+        console.log("READYSTATE:", xhr.readyState)
+
+        // for loaders(while something is loading)
+        xhr.onprogress = function() {
+          console.log("READYSTATE:", xhr.readyState)
+        }
+
+        // onreadystatechange is used here to catch the readyState == 2
+        xhr.onreadystatechange = function() {
+          if (this.readyState == 2) {
+            console.log("READYSTATE:", xhr.readyState)
+
+          }
+        }
+
+        // .onload only executes when readyState == 4
+        xhr.onload = function() {
+          // only when status is okay
+          if (this.status == 200) {
+            console.log("READYSTATE:", xhr.readyState)
+            document.getElementById('text').innerHTML = this.responseText
+          }
+          // when status is 404
+          else if (this.status == 404) {
+            document.getElementById('text').innerHTML = "404 Not Found"
+
+          }
+        }
+
+        // handle request error
+        xhr.onerror = function() {
+          console.log("request error...")
+        }
+
+        // sends request
+        xhr.send()
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Fetch JSON</title>
+  </head>
+  <body>
+    <button id="button1">Get User</button>
+    <button id="button2">Get Users</button>
+    <button id="button3">Load Github Users</button>
+    <br><br>
+    <h1>GitHub users</h1>
+    <h4 id="github"></h4>
+    <h1>User</h1>
+    <h4 id="user"></h4>
+    <h1>Users</h1>
+    <h4 id="users"></h4>
+
+    <script type="text/javascript">
+      // LOCAL JSON
+      document.getElementById('button1').addEventListener('click', load_user)
+      document.getElementById('button2').addEventListener('click', load_users)
+
+      function load_user() {
+        // create xhr object
+        let xhr = new XMLHttpRequest()
+
+        xhr.open('GET', 'user.json', true)
+
+        // readyState == 4 aka all is ready
+        xhr.onload = function() {
+          if (this.status == 200) {
+            // JSON.parse is used to turn json string into a js object
+            let user = JSON.parse(this.responseText)
+
+            // some html too but that's okay for learning purposes
+            document.getElementById('user').innerHTML = "<ul>" + "<li>" +
+            "NAME: " + user.name + "</li>" + "<li>" + "ID: " + user.id +
+            "</li>" + "<li>" + "EMAIL: " + user.email + "</li>" + "</ul>"
+          }
+          // good practice
+          else if (this.status == 404) {
+            console.log('404 Not Found')
+          }
+        }
+
+        // send request
+        xhr.send()
+      }
+
+      function load_users() {
+        // create xhr object
+        let xhr = new XMLHttpRequest()
+
+        xhr.open('GET', 'users.json', true)
+
+        // readyState == 4 aka all is ready
+        xhr.onload = function() {
+          if (this.status == 200) {
+            // JSON.parse is used to turn json string into a js object
+            let users = JSON.parse(this.responseText)
+            // ouput variable
+            let output = ""
+            for (let i = 0, length = users.length; i < length; i++) {
+              // some html too but that's okay for learning purposes
+              output +=  "<ul>" + "<li>" +
+              "NAME: " + users[i].name + "</li>" + "<li>" + "ID: " + users[i].id +
+              "</li>" + "<li>" + "EMAIL: " + users[i].email + "</li>" + "</ul>"
+            }
+            document.getElementById('users').innerHTML = output
+          }
+          // good practice
+          else if (this.status == 404) {
+            console.log('404 Not Found')
+          }
+        }
+
+        // send request
+        xhr.send()
+      }
+
+      // EXTERNAL JSON
+      document.getElementById('button3').addEventListener('click', github)
+
+      // load github users
+      function github() {
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET', 'https://api.github.com/users', true)
+
+        xhr.onload = function() {
+          if (this.status == 200) {
+            let users = JSON.parse(this.responseText)
+            let output = ""
+            for (let i = 0, length = users.length; i < length; i++) {
+              output += "<div class='user'>" + "<img src='" +
+              users[i].avatar_url + "' width='70'/>" + "<ul>" + "<li>login: " +
+              users[i].login + "</li>" + "<li>ID: " + users[i].id + "</li>" +
+              "</ul>" + "</div>"
+            }
+
+            document.getElementById('github').innerHTML = output
+          }
+          else if (this.status == 404) {
+            console.log("request error...")
+          }
+        }
+
+        xhr.send()
+      }
+
+    </script>
+  </body>
+</html>
