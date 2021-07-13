@@ -16,6 +16,10 @@ console.log("]0;3]: " + numbers.excluded_0_3included)
 console.log("]0;1]: " + numbers["one"])
 
 // add a new property to object using (.) notation: object.new_property
+numbers.new_property1 = "555"
+console.log(numbers)
+
+// add a new property to object using the [] notation: object["new_property"]
 numbers[1] = "one"
 console.log(numbers)
 
