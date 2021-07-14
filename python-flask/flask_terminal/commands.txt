@@ -4,8 +4,17 @@ environment variable: FLASK_DEBUG=1
 FILE TO RUN:
 environment variable: FLASK_APP=file
 
+GENERATE A RANDOM SECRET KEY
+in python shell:
+	import os
+	os.urandom(12).hex() <<< 12 bytes in hex format
+
 DATABASE PACKAGES
 pip install flask-sqlalchemy <<< ORM(Object-relational mapper)
+
+FLASK FORMS
+pip install flask-wtf
+pip install wtforms
 
 INITIALIZE DATABASE
 in python shell:
