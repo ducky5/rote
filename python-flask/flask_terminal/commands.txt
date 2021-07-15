@@ -16,6 +16,9 @@ FLASK FORMS
 pip install flask-wtf
 pip install wtforms
 
+FOR HASHING
+pip install flask_bcrypt
+
 INITIALIZE DATABASE
 in python shell:
 	from app import db

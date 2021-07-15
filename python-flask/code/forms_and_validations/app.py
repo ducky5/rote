@@ -1,11 +1,35 @@
-from flask import Flask
-from flask import render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
+# hashing
+from flask_bcrypt import Bcrypt
+# user authentication imports
+from flask_login import LoginManager, login_user, UserMixin
 # flask forms imports
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-# form validation imports
-from wtforms.validators import Length, EqualTo, Email, DataRequired
+# form validation imports(within parathesis cuz it's a long line)
+from wtforms.validators import (Length, EqualTo, Email, DataRequired,
+ValidationError)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
@@ -14,6 +38,88 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SECRET_KEY'] = '57798ed544580fcb365fa3c7'
 
 db = SQLAlchemy(app)
+
+# create bcrypt instance
+bcrypt = Bcrypt(app)
+
+# create LoginManager instance
+login_manager = LoginManager(app)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# user loader
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+# models
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer(), primary_key=True)
+    username = db.Column(db.String(length=30), nullable=False, unique=True)
+    email = db.Column(db.String(length=50), nullable=False, unique=True)
+    password_hash = db.Column(db.String(length=60), nullable=False)
+
+    def __repr__(self):
+        return f'{self.username}'
+
+    # for password hashing
+    @property
+    def password(self):
+        # password will be stored in this property instead of password_hash
+        return self.password
+
+    @password.setter
+    def password(self, plain_text_password):
+        # then password_hash is going to be set to a hashed version
+        # in parathesis because invalid syntax otherwise
+        self.password_hash = (bcrypt.generate_password_hash(plain_text_password)
+        .decode('utf-8'))
+
+    def check_password_correction(self, attempted_password):
+        return bcrypt.check_password_hash(self.password_hash,
+        attempted_password)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # flask forms(in same file only cuz this is for learning)
 class RegisterForm(FlaskForm):
@@ -27,15 +133,44 @@ class RegisterForm(FlaskForm):
     [EqualTo('password1'), DataRequired()])
     submit = SubmitField(label='Create Account')
 
-# models
-class User(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    username = db.Column(db.String(length=30), nullable=False, unique=True)
-    email = db.Column(db.String(length=50), nullable=False, unique=True)
-    password_hash = db.Column(db.String(length=60), nullable=False)
+    # prefix all validation functions with validate_
+    # and suffix validate_ with fieldname to validate
+    def validate_username(self, check_me): # check_me is not good btw
+        user = User.query.filter_by(username=check_me.data).first()
+        if user:
+            raise ValidationError('username already taken!')
 
-    def __repr__(self):
-        return f'{self.username}'
+    def validate_email(self, check_me):
+        user = User.query.filter_by(email=check_me.data).first()
+        if user:
+            raise ValidationError('email already taken!')
+
+class LoginForm(FlaskForm):
+    username = StringField(label='Username', validators=[DataRequired()],
+    render_kw={'autofocus':True})
+    password = PasswordField(label='Password', validators=[DataRequired()])
+    submit = SubmitField(label='Login')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # routes
 
@@ -48,7 +183,7 @@ def register_page():
     if form.validate_on_submit():
         user_to_create = User(username=form.username.data,
                               email=form.email.data,
-                              password_hash=form.password1.data)
+                              password=form.password1.data) # middleman property
 
         db.session.add(user_to_create)
         db.session.commit()
@@ -57,10 +192,32 @@ def register_page():
 
     if form.errors != {}: # if the dict is not empty of errors
         for err_msg in form.errors.values():
-            print("errors:", err_msg)
+            flash(f'error: {err_msg[0]}', category='error')
 
     return render_template('register.html', form=form)
 
+@app.route('/login', methods=['GET', 'POST'])
+def login_page():
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        attempted_user = (User.query.filter_by(username=form.username.data)
+        .first())
+        # if attempted_user is not None
+        if attempted_user and attempted_user.check_password_correction(form.password
+        .data):
+            login_user(attempted_user)
+            flash(f'Logged in as: {attempted_user.username}', category='success')
+            return redirect(url_for('home'))
+        else:
+            flash('wrong username or password!', category='error')
+
+    if form.errors != {}: # if the dict is not empty of errors
+        for err_msg in form.errors.values():
+            flash(f'error: {err_msg[0]}', category='error')
+
+    return render_template('login.html', form=form)
+
 @app.route('/')
 def home():
-    return 'homepage'
+    return render_template('home.html')
