@@ -3,7 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 # hashing
 from flask_bcrypt import Bcrypt
 # user authentication imports
-from flask_login import LoginManager, login_user, UserMixin
+from flask_login import (LoginManager, login_user, UserMixin, logout_user,
+login_required, current_user)
 # flask forms imports
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
@@ -44,6 +45,15 @@ bcrypt = Bcrypt(app)
 
 # create LoginManager instance
 login_manager = LoginManager(app)
+
+# tell the login_manager the location of the login page
+login_manager.login_view = 'login_page'
+
+# set flash message
+login_manager.login_message = 'Please login'
+
+# set flash category
+login_manager.login_message_category = 'alert'
 
 
 
@@ -177,6 +187,10 @@ class LoginForm(FlaskForm):
 # methods argument is required for post requests
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
+    # check if user is authenticated
+    if current_user.is_authenticated:
+        return redirect(url_for('forusers'))
+
     # create form instance
     form = RegisterForm()
     # once the submit button is triggered
@@ -188,7 +202,12 @@ def register_page():
         db.session.add(user_to_create)
         db.session.commit()
 
-        return redirect(url_for('home'))
+        # log the user in automatically upon registration
+        login_user(user_to_create)
+        flash('Account created successfully! You are now logged in',
+        category='success')
+
+        return redirect(url_for('forusers'))
 
     if form.errors != {}: # if the dict is not empty of errors
         for err_msg in form.errors.values():
@@ -198,17 +217,22 @@ def register_page():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
+    # check if user is authenticated
+    if current_user.is_authenticated:
+        return redirect(url_for('forusers'))
+        
     form = LoginForm()
 
     if form.validate_on_submit():
         attempted_user = (User.query.filter_by(username=form.username.data)
         .first())
         # if attempted_user is not None
-        if attempted_user and attempted_user.check_password_correction(form.password
-        .data):
+        if attempted_user and attempted_user.check_password_correction(form
+        .password.data):
             login_user(attempted_user)
-            flash(f'Logged in as: {attempted_user.username}', category='success')
-            return redirect(url_for('home'))
+            flash(f'Logged in as: {attempted_user.username}',
+            category='success')
+            return redirect(url_for('forusers'))
         else:
             flash('wrong username or password!', category='error')
 
@@ -218,6 +242,18 @@ def login_page():
 
     return render_template('login.html', form=form)
 
+@app.route('/logout')
+def logout_page():
+    logout_user()
+    flash('You logged out!', category='success')
+
+    return redirect(url_for('home'))
+
 @app.route('/')
 def home():
     return render_template('home.html')
+
+@app.route('/forusers')
+@login_required
+def forusers():
+    return render_template('forusers.html')
