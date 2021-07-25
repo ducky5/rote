@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>flask-socketio</title>
+    <!-- socketio library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <h4>Testing flask-socketio</h4>
+    <!-- for input -->
+
+    <input type="text" name="emit_data" id="emit_data" placeholder="Message">
+    <button type="button" name="button" id="send">Send</button>
+
+    <!-- for output -->
+    <h2>Receive:</h2>
+    <div id="log"></div>
+
+    <!-- javascript -->
+    <script type="text/javascript">
+      let socket = io()
+
+      // once connected send data to server
+      socket.on('connect', function() {
+          socket.emit('my_event', {data: 'Alive and well'});
+      });
+
+      // once the my_responses event is triggered via the server, the client
+      // is notified and the response from emission is shown
+      socket.on('my_response', function(msg, cb) {
+          document.getElementById('log').append('Received #' + msg.count + ': ' + msg.data + ' ---- ')
+          // if (cb)
+          //     cb();
+      });
+
+      document.getElementById('send').addEventListener('click', emit)
+
+      // function simply runs after button send is clicked, it emits from
+      // client to server
+      function emit() {
+        socket.emit('my_event', {data: document.getElementById('emit_data')
+        .value})
+      }
+
+    </script>
+
+  </body>
+</html>
