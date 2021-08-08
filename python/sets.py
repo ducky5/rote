@@ -101,3 +101,36 @@ set_2 = {1, 2, 3, 4, 5, 6}
 set_1.symmetric_difference_update(set_2)
 
 print(set_1)
+
+print("-------------------------------------------------------")
+
+# check if a set is a subset of another
+print(set_1.issubset(set_2))
+
+# check if a set is a superset of another
+print(set_2.issuperset(set_1))
+
+# checks if the intersection is null(returns true otherwise False)
+print(set_1.isdisjoint(set_2))
+
+print("-------------------------------------------------------")
+
+
+# make a copy of set
+set_3 = set_2.copy()
+set_3.add(7)
+print(set_2, set_3)
+
+print()
+
+# another way to make copy
+set_3 = set(set_1)
+set_3.add(8)
+print(set_1, set_3)
+
+print("-------------------------------------------------------")
+
+# frozen set(immutable)
+fronzen_set = frozenset([1, 2, 3, 4])
+
+print(fronzen_set)

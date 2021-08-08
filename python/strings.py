@@ -1,3 +1,6 @@
+# NOTE:
+    ### STRINGS ARE IMMUTABLE
+
 string = "I am a string."
 string_length = len(string) # store length of string in variable
 print("string length:", string_length)
@@ -19,3 +22,12 @@ print("index(\"I\") =", string.index("I"))
 
 # replace list of characters
 print(string.replace("I am", "You are"))
+
+print()
+
+print(string)
+
+print("-------------------------------------------------------")
+
+# reverse string via negative optional step in slicing
+print(string[::-1])
