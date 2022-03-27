@@ -35,7 +35,8 @@ class prev_next_years_exc(prev_next_years):
         if isinstance(exc_value, IndexError):
             print(f'Exception occured in your with block: {exc_type}')
             print(f'Exception message: {exc_value}')
-            return True
+            return True # makes it possible for the program to continue executing past the with block(False or not returning makes the program stop)
+        return False # this line will execute if there was no IndexError, always good to be explicit
 
 print('------------------------------------------------------------------------')
 print('Class-based(derived) context manager, exception handling', end='\n'*2)
@@ -51,4 +52,5 @@ print('Class-based context manager, errors shown but not handled', end='\n'*2)
 with prev_next_years(2022) as session: # sessions holds the return value of __enter__
     print(session)
     session[100] # this line produces an exception, that exception is shown by the .__exit__ method, if there are any errors then they are shown as indicated, otherwise it returns None
-    
+# the following line will not execute because the previous with block produces but does not handle exceptions
+print('A'*100)
