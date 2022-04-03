@@ -1,0 +1,348 @@
+Stack Overflow
+About
+Products
+For Teams
+Search…
+Join Stack Overflow to find the best answer to your technical question, help others answer theirs.
+
+Home
+PUBLIC
+Questions
+Tags
+Users
+Companies
+COLLECTIVES
+Explore Collectives
+TEAMS
+Stack Overflow for Teams – Collaborate and share knowledge with a private group.
+Corpora/stopwords not found when import nltk library
+Asked 5 years, 2 months ago
+Modified 21 days ago
+Viewed 142k times
+
+74
+
+
+5
+I trying to import the nltk package in python 2.7
+
+  import nltk
+  stopwords = nltk.corpus.stopwords.words('english')
+  print(stopwords[:10])
+Running this gives me the following error:
+
+LookupError:
+**********************************************************************
+Resource 'corpora/stopwords' not found.  Please use the NLTK
+Downloader to obtain the resource:  >>> nltk.download()
+So therefore I open my python termin and did the following:
+
+import nltk
+nltk.download()
+Which gives me:
+
+showing info https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/index.xml
+However this does not seem to stop. And running it again still gives me the same error. Any thoughts where this goes wrong?
+
+python
+nltk
+Share
+Improve this question
+Follow
+asked Jan 12, 2017 at 10:19
+user avatar
+Frits Verstraten
+1,78955 gold badges2020 silver badges3636 bronze badges
+Add a comment
+9 Answers
+Sorted by:
+
+Highest score (default)
+
+133
+
+You are currently trying to download every item in nltk data, so this can take long. You can try downloading only the stopwords that you need:
+
+import nltk
+nltk.download('stopwords')
+Or from command line (thanks to Rafael Valero's answer):
+
+python -m nltk.downloader stopwords
+Reference:
+Installing NLTK Data - Command line installation
+Share
+Improve this answer
+Follow
+edited Nov 14, 2019 at 11:11
+answered Jan 13, 2017 at 18:06
+user avatar
+Kurt Bourbaki
+10.8k66 gold badges3131 silver badges5050 bronze badges
+Add a comment
+
+39
+
+The some as mentioned here by Kurt Bourbaki but in the command line:
+
+python -m nltk.downloader stopwords
+Share
+Improve this answer
+Follow
+edited Mar 21, 2018 at 9:02
+answered Mar 1, 2018 at 11:35
+user avatar
+Rafael Valero
+2,3911515 silver badges2626 bronze badges
+Add a comment
+
+12
+
+You can do this in separately in console.
+It will give you a result.
+
+import nltk
+nltk.download('stopwords')
+I used jupyter console when I faced this problem.
+
+Share
+Improve this answer
+Follow
+edited Aug 22, 2018 at 7:36
+user avatar
+L_J
+2,2351010 gold badges2121 silver badges2727 bronze badges
+answered Aug 22, 2018 at 6:14
+user avatar
+Umesh
+15711 silver badge22 bronze badges
+5
+How is this answer different from the accepted answer? –
+EliadL
+ Jan 27, 2019 at 9:36
+Add a comment
+
+4
+
+If your PC uses proxy for connectivity, then try this:
+
+import nltk
+
+nltk.set_proxy('http://proxy.example.com:3128', ('USERNAME', 'PASSWORD'))
+nltk.download('stopwords')
+Share
+Improve this answer
+Follow
+edited Jun 21, 2018 at 19:51
+user avatar
+koPytok
+3,10311 gold badge1010 silver badges2626 bronze badges
+answered Jun 21, 2018 at 17:49
+user avatar
+R Kumar
+32111 gold badge33 silver badges66 bronze badges
+Add a comment
+
+4
+
+if you get an SSL/Certificate error, run the following command.
+
+This works by disabling SSL check!
+
+import nltk
+import ssl
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+nltk.download()
+Share
+Improve this answer
+Follow
+answered Oct 26, 2020 at 12:18
+user avatar
+Reshma2k
+6155 bronze badges
+This worked like a charm –
+user3636989
+ Mar 13 at 7:01
+Add a comment
+
+0
+
+showing info https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/index.xml
+If you are running this command in a jupyter notebook, it opens another window titled 'NLTK Downloader'. Once you go in that window, you can select the topics you want to download and then click on download button to start downloading.
+
+Until you close the NLTK Downloader window, the cell in the Jupyter keeps on running.
+
+Share
+Improve this answer
+Follow
+answered Oct 29, 2019 at 19:52
+user avatar
+Srushti
+111 bronze badge
+Add a comment
+
+0
+
+I know the comment is quite late, but if it helps:
+
+Although the nltk.download('stopwords') will do the job, there might be times when it won't work due to proxy issues if your organization has blocked it.
+
+I found this github link pretty handy, from where I can just pick up the list of words and integrate it manually in my project just as a workaround.
+
+Share
+Improve this answer
+Follow
+edited Dec 22, 2020 at 8:03
+user avatar
+MattAllegro
+5,25755 gold badges3737 silver badges4848 bronze badges
+answered Dec 22, 2020 at 7:39
+user avatar
+factorThis
+6455 bronze badges
+Add a comment
+
+0
+
+Use GPU runtime, it will not give you any error.
+
+The same code will work which you are using
+
+import nltk
+stopwords = nltk.corpus.stopwords.words('english')
+print(stopwords[:10])
+Share
+Improve this answer
+Follow
+answered Nov 26, 2021 at 6:28
+user avatar
+deevas
+111 bronze badge
+Add a comment
+
+0
+
+check what error you are getting --
+
+python3 -m nltk.downloader stopwords
+Error :
+
+RuntimeWarning: 'nltk.downloader' found in sys.modules after import of package 'nltk', but prior to execution of 'nltk.downloader'; this may result in unpredictable behaviour
+
+
+warn(RuntimeWarning(msg))
+[nltk_data] Error loading stopwords: <urlopen error [SSL:
+[nltk_data]     CERTIFICATE_VERIFY_FAILED] certificate verify failed:
+[nltk_data]     unable to get local issuer certificate (_ssl.c:1123)>
+Use the solution provided my @reshma2k
+
+Share
+Improve this answer
+Follow
+answered Mar 13 at 7:04
+user avatar
+user3636989
+11111 silver badge88 bronze badges
+Add a comment
+Highly active question. Earn 10 reputation (not counting the association bonus) in order to answer this question. The reputation requirement helps protect this question from spam and non-answer activity.
+Not the answer you're looking for? Browse other questions tagged python nltk or ask your own question.
+The Overflow Blog
+Time to get on trend
+Best practices to increase the speed for Next.js apps
+Featured on Meta
+The Future of our Jobs Ad slots
+Ask Wizard for New Users Feature Test is now Live
+Calling up moderators from the 2021 election - welcome, Dharman & Ryan M!
+Staging Ground Workflow: Question Details & Actions
+Linked
+0
+LookupError: Resource stopwords not found. Please use the NLTK Downloader to obtain the resource
+0
+how to import/download with the stopwords in the NLTK?
+Related
+1173
+pg_config executable not found
+66
+NLTK and Stopwords Fail #lookuperror
+1
+Heroku Django app using NLTK: How do I use the NLTK corpora in the app?
+3
+Python nltk Resource u'tokenizers/punkt/english.pickle' not found bu It is actually present
+14
+Using NLTK corpora with AWS Lambda functions in Python
+1
+Resource 'corpora/stopwords' not found
+6
+Lambda not supporting NLTK file size
+0
+NLTK. Punkt not found
+0
+How can I install nltk corpora through Python Idle 3.8.6 on windows 10 64 bit?
+Hot Network Questions
+What is an example of a measure without a density that is useful for some application?
+How can this teleporter escape from eternal falling?
+Damerau-Damerau distance
+Organize a Kiowa library
+What do the 3-character aircraft type codes mean?
+Started new job, being asked to change my last name (in HR system) because timesheet system is faulty
+What button did a pilot press that led to them being caught for falsifying experience?
+Why do most ARFF trucks tend to be so angular?
+Why is Biden's "(Putin) ...cannot remain in power" widely considered a gaffe to be walked back while previous US presidents have said similar?
+How can I convert std::vector<T> to a vector of pairs std::vector<std::pair<T,T>> using an STL algorithm?
+Why does my sea salt have a best by date?
+Can you cast Hellish Rebuke on a creature which made the environment damage you, without that creature ever damaging you directly?
+What scale are Maxwell's Equations valid?
+Book I read 10-15 years ago, where the humans of Earth come together with their alien conquerors to face off against a third (alien) species
+Which country is this license plate from?
+Hartley oscillator not self-starting
+Continuity error in A Door into Summer - or very subtle clue
+How do we know which case we should use relative pronoun in?
+Do the Belarusians understand the Ukrainian language better than Russians do?
+cmp command return value?
+A wordsearch for today
+Movie or book about people kept in a type of prison where if their name came up in a lottery, they'd be subject to experiments and/or organ harvesting
+How to modify the cell dimensions in tikzcd?
+Number of times Rosh, Rif, Rambam are quoted in Shulchan Aruch
+ Question feed
+
+STACK OVERFLOW
+Questions
+Help
+PRODUCTS
+Teams
+Advertising
+Collectives
+Talent
+COMPANY
+About
+Press
+Work Here
+Legal
+Privacy Policy
+Terms of Service
+Contact Us
+Cookie Settings
+Cookie Policy
+STACK EXCHANGE NETWORK
+Technology
+Culture & recreation
+Life & arts
+Science
+Professional
+Business
+API
+Data
+Blog
+Facebook
+Twitter
+LinkedIn
+Instagram
+Site design / logo © 2022 Stack Exchange Inc; user contributions licensed under cc by-sa. rev 2022.4.1.41852
+
+ 
